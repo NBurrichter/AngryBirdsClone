@@ -5,6 +5,7 @@ public class Slingshot : MonoBehaviour {
 
 	//Inspector Variables
 	public GameObject prefabProjectile;
+	public float velocityMultiplier = 4.0f;
 
 	//Internal state Variables
 	private GameObject launchPoint;
@@ -62,5 +63,13 @@ public class Slingshot : MonoBehaviour {
 		//set projectile position to new position and fire it
 		projectile.transform.position = launchPos + mouseDelta;
 
+		if (Input.GetMouseButtonUp (0)) {
+			aimingMode = false;
+			projectile.GetComponent<Rigidbody> ().isKinematic = false;
+
+			projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMultiplier;
+
+
+		}
 	}
 }
