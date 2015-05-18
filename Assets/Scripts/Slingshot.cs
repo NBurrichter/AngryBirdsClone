@@ -44,10 +44,15 @@ public class Slingshot : MonoBehaviour {
 
 	}
 
+	void OnMouseOver(){
+		launchPoint.SetActive (true);	
+	}
+
 	void Update() {
 		if (!aimingMode)
 			return;
 
+		launchPoint.SetActive (true);	
 		//get mouse pos and convert it to 3D
 		Vector3 mousePos2D = Input.mousePosition;
 		mousePos2D.z = - Camera.main.transform.position.z;
@@ -68,8 +73,10 @@ public class Slingshot : MonoBehaviour {
 			projectile.GetComponent<Rigidbody> ().isKinematic = false;
 
 			projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMultiplier;
+			launchPoint.SetActive (false);
 
-
+			FollowCam.S.poi = projectile;
 		}
 	}
+	
 }
