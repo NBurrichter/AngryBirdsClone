@@ -75,6 +75,10 @@ public class Slingshot : MonoBehaviour {
 			projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMultiplier;
 			launchPoint.SetActive (false);
 
+			ProjectileTrail.S.Clear();
+
+			GameController.ShotFired();
+
 			FollowCam.S.poi = projectile;
 		}
 	}

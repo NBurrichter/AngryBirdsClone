@@ -11,11 +11,7 @@ public class FollowCam : MonoBehaviour {
 
 	public float easing = 0.05f;
 
-	public float speed = 0.1f;
-	public float startTime;
-
 	public Vector2 minXY;
-
 
 	void Awake() {
 		S = this;
@@ -24,12 +20,30 @@ public class FollowCam : MonoBehaviour {
 
 	void FixedUpdate() {
 
+		Vector3 destination;
+
 		//Check if the poi exists
 		if (poi == null) {
-			return;
-		}
+			//set the poi to the slingshot(zero vector)
+			destination = Vector3.zero;
+		} else {
+			//else (there is a poi)
 
-		Vector3 destination = poi.transform.position;
+			destination = poi.transform.position;
+
+			//is the poi a projectile
+			if(poi.tag == "Projectile"){
+
+				//check if it is restin(sleeping)
+				if(poi.GetComponent<Rigidbody>().IsSleeping()){
+
+					//set the poi to default
+					poi = null;
+					return;
+				}
+			}
+					
+		}
 
 		destination.x = Mathf.Max (minXY.x, destination.x);
 		destination.y = Mathf.Max (minXY.y, destination.y);
