@@ -14,9 +14,10 @@ GameObject:
   - 54: {fileID: 5410246}
   - 65: {fileID: 6562482}
   - 114: {fileID: 11410962}
+  - 82: {fileID: 8204352}
   m_Layer: 0
   m_Name: enemyShip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,6 +92,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.46000004, y: 1.25, z: 2.51290941}
   m_Center: {x: .480206907, y: .100000001, z: .000214099884}
+--- !u!82 &8204352
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126078}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9558002
 Animator:
   serializedVersion: 3
@@ -123,6 +193,7 @@ MonoBehaviour:
   strengthOfAttraction: 5
   distanceOfAttraction: 10
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  hitSound: {fileID: 8300000, guid: c71a137b529ebea44914de4c8dde7b65, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

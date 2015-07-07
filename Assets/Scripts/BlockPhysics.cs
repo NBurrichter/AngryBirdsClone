@@ -8,8 +8,19 @@ public class BlockPhysics : MonoBehaviour {
 	public float distanceOfAttraction = 10.0f;
 	public GameObject explosion;
 
+	//souds
+	//public AudioClip hitSound;
+	//private AudioSource source;
+	//private float volLowRange = .5f;
+	//private float volHighRange = 1.0f;
+	//private float lowPitchRange = .75F;
+	//private float highPitchRange = 1.5F;
+
 	void Awake(){
 		attractedTo = GameObject.Find ("Planet");
+
+		//load audio source 
+		//source = GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -27,7 +38,12 @@ public class BlockPhysics : MonoBehaviour {
 			return;
 		}
 
+		ExplosionManager.S.PlaySoundExplosion ();
+
+		//destroy self in a big explosion
 		Instantiate(explosion, transform.position, transform.rotation);
 		Destroy(gameObject);
+
+
 	}
 }

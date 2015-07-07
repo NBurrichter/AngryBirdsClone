@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - WorldPhysics
   - Planet
+  - Enemy
   layers:
   - Default
   - TransparentFX

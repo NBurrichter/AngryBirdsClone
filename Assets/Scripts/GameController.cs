@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public enum GameState {
 	idle,
@@ -123,6 +124,15 @@ public class GameController : MonoBehaviour {
 			break;
 			}
 	}
+
+	//Mute Function
+	//public void Mute(){
+	//	if (GetComponent<AudioSource> ().mute == false) {
+	//		GetComponent<AudioSource> ().mute = true;
+	//	} else {
+	//		GetComponent<AudioSource> ().mute = false;
+	//	}
+	//}
 
 	public static void ShotFired(){
 		S.shotsTaken++;

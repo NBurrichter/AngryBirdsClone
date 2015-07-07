@@ -9,9 +9,21 @@ public class ProjectilePhysics : MonoBehaviour {
 
 	private bool collided;
 
+	//souds
+	public AudioClip hitSound;
+	public AudioClip shipHitSound;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+	private float lowPitchRange = .75F;
+	private float highPitchRange = 1.5F;
+
 	void Awake(){
 		attractedTo = GameObject.Find ("Planet");
 		collided = false;
+
+		//load audio source 
+		source = GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -26,6 +38,17 @@ public class ProjectilePhysics : MonoBehaviour {
 		if (col.transform.tag == "Planet") {
 			GetComponent<Rigidbody>().Sleep();
 			collided = true;
+
+			//Play spund when crashing into planet
+			float vol = Random.Range (volLowRange, volHighRange);
+			source.pitch = Random.Range (lowPitchRange,highPitchRange);
+			source.PlayOneShot(hitSound,vol);
+		}
+		if (col.transform.tag == "Enemy") {
+			//Play spund when crashing into spaceship
+			float vol = Random.Range (volLowRange, volHighRange);
+			source.pitch = Random.Range (lowPitchRange,highPitchRange);
+			source.PlayOneShot(shipHitSound,vol);
 		}
 	}
 
