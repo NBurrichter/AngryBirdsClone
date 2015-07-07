@@ -35,7 +35,7 @@ public class CloudCrafterRight : MonoBehaviour {
 			
 			//create that instance
 			cloud = Instantiate(cloudPrefabs[prefabNum]) as GameObject;
-			
+	
 			//Position and scale the cloud
 			Vector3 cPos = Vector3.zero;
 			cPos.x = Random.Range(cloudPosMin.x,cloudPosMax.x);
@@ -79,8 +79,8 @@ public class CloudCrafterRight : MonoBehaviour {
 			//check if clouds x position is to small
 			if(cPos.x > cloudPosMax.x) {
 				
-				//set it to the maximum x position
-				cPos.x = cloudPosMax.x;
+				//set it to the minimum x position
+				cPos.x = cloudPosMin.x;
 			}
 			
 			cloud.transform.position = cPos;
