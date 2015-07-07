@@ -6,6 +6,7 @@ public class Slingshot : MonoBehaviour {
 	//Inspector Variables
 	public GameObject prefabProjectile;
 	public float velocityMultiplier = 4.0f;
+	public GameObject cannon;
 
 	//Internal state Variables
 	private GameObject launchPoint;
@@ -14,11 +15,19 @@ public class Slingshot : MonoBehaviour {
 	private GameObject projectile;
 	private Vector3 launchPos;
 
+	//Blendshape controllers
+	SkinnedMeshRenderer skinnedMeshRenderer;
+	//Mesh skinnedMesh;
+
 	void Awake() {
 		Transform launchPointTrans = transform.Find("Launchpoint");
 		launchPoint = launchPointTrans.gameObject;
 		launchPoint.SetActive(false);
 		launchPos = launchPointTrans.position;
+
+		//Blendshapes:
+		skinnedMeshRenderer = cannon.GetComponent<SkinnedMeshRenderer> ();
+		//skinnedMesh = cannon.GetComponent<SkinnedMeshRenderer> ().sharedMesh;
 	}
 
     void OnMouseEnter() {
@@ -61,9 +70,16 @@ public class Slingshot : MonoBehaviour {
 		//Calculate the delta between launch position and mouse position
 		Vector3 mouseDelta = mousePos3D - launchPos;
 
+		//cannon looking into direction of shooting
+		Debug.DrawLine (cannon.transform.position,cannon.transform.position + mouseDelta);
+		cannon.transform.LookAt (mouseDelta);
+
 		//Constrain the delta to the maximum of the sphere collider
 		float maxMagnitude = this.GetComponent<SphereCollider> ().radius;
 		mouseDelta = Vector3.ClampMagnitude (mouseDelta,maxMagnitude);
+
+		//Changing blenshape
+		skinnedMeshRenderer.SetBlendShapeWeight (0, Vector3.Magnitude((mouseDelta))*25);
 
 		//set projectile position to new position and fire it
 		projectile.transform.position = launchPos + mouseDelta;
@@ -75,11 +91,17 @@ public class Slingshot : MonoBehaviour {
 			projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMultiplier;
 			launchPoint.SetActive (false);
 
+			//Reset Trail
 			ProjectileTrail.S.Clear();
 
+			//Add shot to counter
 			GameController.ShotFired();
 
+			//set poi for cam
 			FollowCam.S.poi = projectile;
+
+			//Reset blenshape to default
+			skinnedMeshRenderer.SetBlendShapeWeight (0, 0);
 		}
 	}
 	

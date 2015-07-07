@@ -33,18 +33,3 @@ public class ProjectilePhysics : MonoBehaviour {
 			collided = false;
 	}
 }
-//		    public GameObject attractedTo;
- //    public float strengthOfAttraction = 5.0f;
-
-//     void Start {}
-
-  //   void Update
-    // {
-      //   Vector3 direction = attractedTo.transform.position - transform.position;
-        // rigidBody.AddForce(strengthOfAttraction * direction);
- 
-     //}
-
-	//}
-
-
