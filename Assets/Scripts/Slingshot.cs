@@ -65,7 +65,9 @@ public class Slingshot : MonoBehaviour {
 
 		//Switch off physics for now
 		projectile.GetComponent<Rigidbody> ().isKinematic = true;
-		//projectile.GetComponent<MeshRenderer> ().enabled = false;
+
+		//hide projectile
+		projectile.GetComponent<MeshRenderer> ().enabled = false;
 	}
 
 	void OnMouseOver(){
@@ -130,7 +132,7 @@ public class Slingshot : MonoBehaviour {
 			FollowCam.S.poi = projectile;
 
 			//show projectile
-			projectile.GetComponent<MeshRenderer> ().enabled = true;
+			//projectile.GetComponent<MeshRenderer> ().enabled = true;
 
 			//Reset blenshape to default
 			skinnedMeshRenderer.SetBlendShapeWeight (0, 0);
