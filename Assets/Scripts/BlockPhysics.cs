@@ -8,6 +8,8 @@ public class BlockPhysics : MonoBehaviour {
 	public float distanceOfAttraction = 10.0f;
 	public GameObject explosion;
 
+	private bool canBeAttracted = false;
+
 	//souds
 	//public AudioClip hitSound;
 	//private AudioSource source;
@@ -25,7 +27,7 @@ public class BlockPhysics : MonoBehaviour {
 
 	void Update() {
 		Vector3 direction = (attractedTo.transform.position - transform.position);
-		if (direction.magnitude < distanceOfAttraction) {
+		if (direction.magnitude < distanceOfAttraction && canBeAttracted ) {
 			Vector3 normalDirection = direction.normalized;
 			GetComponent<Rigidbody> ().AddForce (strengthOfAttraction * normalDirection);
 		}
@@ -33,16 +35,17 @@ public class BlockPhysics : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) 
 	{
-		if (other.transform.tag != "Planet")
-		{
-			return;
+		if (other.transform.tag == "Planet") {
+			ExplosionManager.S.PlaySoundExplosion ();
+			
+			//destroy self in a big explosion
+			Instantiate (explosion, transform.position, transform.rotation);
+			Destroy (gameObject);
 		}
 
-		ExplosionManager.S.PlaySoundExplosion ();
-
-		//destroy self in a big explosion
-		Instantiate(explosion, transform.position, transform.rotation);
-		Destroy(gameObject);
+		if (other.transform.tag == "Projectile" || other.transform.tag == "Enemy") {
+			canBeAttracted  = true;
+		}
 
 
 	}

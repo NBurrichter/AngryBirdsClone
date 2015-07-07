@@ -8,8 +8,8 @@ public class ExplosionManager : MonoBehaviour {
 	//souds
 	public AudioClip hitSound;
 	private AudioSource source;
-	private float volLowRange = .5f;
-	private float volHighRange = 1.0f;
+	private float volLowRange = 2.0f;
+	private float volHighRange = 3.0f;
 	private float lowPitchRange = .75F;
 	private float highPitchRange = 1.5F;
 

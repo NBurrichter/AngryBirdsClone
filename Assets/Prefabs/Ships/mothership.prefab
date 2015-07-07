@@ -190,10 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractedTo: {fileID: 0}
-  strengthOfAttraction: 5
-  distanceOfAttraction: 10
+  strengthOfAttraction: 10
+  distanceOfAttraction: 30
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
-  hitSound: {fileID: 8300000, guid: c71a137b529ebea44914de4c8dde7b65, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

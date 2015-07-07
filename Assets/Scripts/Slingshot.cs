@@ -107,8 +107,8 @@ public class Slingshot : MonoBehaviour {
 
 		//cannon looking into direction of shooting
 		Debug.DrawLine (cannon.transform.position,cannon.transform.position + mouseDelta);
-		cannon.transform.LookAt (mousePos3D);
-		cannon.transform.rotation = cannon.transform.rotation * new Quaternion (0,0,0,0);
+		cannon.transform.LookAt (cannon.transform.position + mouseDelta);
+		cannon.transform.rotation = cannon.transform.rotation * new Quaternion (180,0,0,0);
 
 		//set projectile position to new position and fire it
 		projectile.transform.position = launchPos + mouseDelta;
