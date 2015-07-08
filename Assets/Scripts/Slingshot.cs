@@ -60,14 +60,14 @@ public class Slingshot : MonoBehaviour {
 		aimingMode = true;
 
 		//instantiate a projectile at launchpoint
-		projectile = Instantiate (prefabProjectile) as GameObject;
-		projectile.transform.position = launchPos; 
+		//projectile = Instantiate (prefabProjectile) as GameObject;
+		//projectile.transform.position = launchPos; 
 
 		//Switch off physics for now
-		projectile.GetComponent<Rigidbody> ().isKinematic = true;
+		//projectile.GetComponent<Rigidbody> ().isKinematic = true;
 
 		//hide projectile
-		projectile.GetComponent<MeshRenderer> ().enabled = false;
+		//projectile.GetComponent<MeshRenderer> ().enabled = false;
 	}
 
 	void OnMouseOver(){
@@ -113,9 +113,19 @@ public class Slingshot : MonoBehaviour {
 		cannon.transform.rotation = cannon.transform.rotation * new Quaternion (180,0,0,0);
 
 		//set projectile position to new position and fire it
-		projectile.transform.position = launchPos + mouseDelta;
+		//projectile.transform.position = launchPos + mouseDelta;
 
 		if (Input.GetMouseButtonUp (0)) {
+			//instantiate a projectile at launchpoint
+			projectile = Instantiate (prefabProjectile) as GameObject;
+			projectile.transform.position = launchPos; 
+			
+			//Switch off physics for now
+			projectile.GetComponent<Rigidbody> ().isKinematic = true;
+			
+			//hide projectile
+			//projectile.GetComponent<MeshRenderer> ().enabled = false;
+
 			aimingMode = false;
 			projectile.GetComponent<Rigidbody> ().isKinematic = false;
 

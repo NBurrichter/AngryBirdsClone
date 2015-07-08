@@ -9,7 +9,7 @@ public class ProjectilePhysics : MonoBehaviour {
 
 	private bool collided;
 
-	public float fadeTimer = 0.1f;
+	//public float fadeTimer = 0.1f;
 
 	//souds
 	public AudioClip hitSound;
@@ -35,10 +35,10 @@ public class ProjectilePhysics : MonoBehaviour {
 			GetComponent<Rigidbody> ().AddForce (strengthOfAttraction * normalDirection);
 		}
 
-		fadeTimer -= 1 * Time.deltaTime;
-		if (fadeTimer < 0 && GetComponent<MeshRenderer> ().enabled == false) {
-			GetComponent<MeshRenderer> ().enabled = true;
-		}
+		//fadeTimer -= 1 * Time.deltaTime;
+		//if (fadeTimer < 0 && GetComponent<MeshRenderer> ().enabled == false) {
+		//	GetComponent<MeshRenderer> ().enabled = true;
+		//}
 	}
 
 	void OnCollisionEnter(Collision col){
