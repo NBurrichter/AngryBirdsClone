@@ -7,8 +7,13 @@ public class BlockPhysics : MonoBehaviour {
 	public float strengthOfAttraction = 5.0f;
 	public float distanceOfAttraction = 10.0f;
 	public GameObject explosion;
+	public GameObject sparkPrefab;
+	public GameObject hitExplosionPrefab;
+
 
 	private bool canBeAttracted = false;
+	private GameObject spark;
+	private GameObject hitExplosion;
 
 	//souds
 	//public AudioClip hitSound;
@@ -44,6 +49,13 @@ public class BlockPhysics : MonoBehaviour {
 		}
 
 		if (other.transform.tag == "Projectile" || other.transform.tag == "Enemy") {
+			spark = Instantiate(sparkPrefab) as GameObject;
+			spark.transform.position = transform.position;
+			spark.transform.parent = transform;
+
+			hitExplosion = Instantiate(hitExplosionPrefab);
+			hitExplosion.transform.position = transform.position;
+
 			canBeAttracted  = true;
 		}
 

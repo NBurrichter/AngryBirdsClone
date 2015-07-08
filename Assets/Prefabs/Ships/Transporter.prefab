@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05490112, y: -1.1487813, z: -2.91435051}
+  m_LocalPosition: {x: 2.08999991, y: -1.1487813, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 458406}
@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.7000008, y: 1.5, z: 2.9000001}
+  m_LocalPosition: {x: 20.7000008, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 413196}
@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05490112, y: -1.1487813, z: -2.91435051}
+  m_LocalPosition: {x: -2.05490112, y: -1.1487813, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 458406}
@@ -149,7 +149,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127032}
-  m_Mesh: {fileID: 4300000, guid: a2f21e42876242c4d9848def448126bd, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3e30da1e2cb210744985238ae3dc9b68, type: 3}
 --- !u!33 &3385126
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -198,7 +198,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.51847672, y: .924750924, z: 1.45615661}
-  m_Center: {x: 4.00158262, y: .0280635953, z: 0}
+  m_Center: {x: 0, y: .0280635953, z: 0}
 --- !u!65 &6565518
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -260,6 +260,8 @@ MonoBehaviour:
   strengthOfAttraction: 10
   distanceOfAttraction: 30
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  sparkPrefab: {fileID: 153806, guid: 09a96166a1de3ab41bfd054825fc24aa, type: 2}
+  hitExplosionPrefab: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
 --- !u!114 &11479602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,13 +277,27 @@ MonoBehaviour:
   strengthOfAttraction: 10
   distanceOfAttraction: 30
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
+  sparkPrefab: {fileID: 153806, guid: 09a96166a1de3ab41bfd054825fc24aa, type: 2}
+  hitExplosionPrefab: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: sparkPrefab
+      value: 
+      objectReference: {fileID: 153806, guid: 09a96166a1de3ab41bfd054825fc24aa, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 3e30da1e2cb210744985238ae3dc9b68, type: 3}
+    - target: {fileID: 0}
+      propertyPath: hitExplosionPrefab
+      value: 
+      objectReference: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107712}
