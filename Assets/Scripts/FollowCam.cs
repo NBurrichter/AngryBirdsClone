@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class FollowCam : MonoBehaviour {
@@ -15,9 +15,13 @@ public class FollowCam : MonoBehaviour {
 
 	//screenshake
 	public Vector2 onCircle;
+	public Vector3 shakeTarget;
+	public float targetDistance = 0.1f;
 	public float shakeIntensity = 2.0f;
 	public float shakeTime = 0.0f;
+	private float shakeMaxTime = 0.0f;
 	public float decreaseFactor = 1.0f;
+	public float shakeEasing = 0.1f;
 
 	void Awake() {
 		S = this;
@@ -39,10 +43,10 @@ public class FollowCam : MonoBehaviour {
 			destination = poi.transform.position;
 
 			//is the poi a projectile
-			if(poi.tag == "Projectile"){
+			if (poi.tag == "Projectile") {
 
 				//check if it is restin(sleeping)
-				if(poi.GetComponent<Rigidbody>().IsSleeping()){
+				if (poi.GetComponent<Rigidbody> ().IsSleeping ()) {
 
 					//set the poi to default
 					poi = null;
@@ -55,7 +59,7 @@ public class FollowCam : MonoBehaviour {
 		destination.x = Mathf.Max (minXY.x, destination.x);
 		destination.y = Mathf.Max (minXY.y, destination.y);
 
-		destination = Vector3.Lerp(transform.position,destination,easing);
+		destination = Vector3.Lerp (transform.position, destination, easing);
 
 		destination.z = camZ;
 
@@ -65,18 +69,30 @@ public class FollowCam : MonoBehaviour {
 
 		//Screenshake
 		if (shakeTime > 0) {
-			
+
 			onCircle = Random.insideUnitCircle;
-			transform.localPosition = new Vector3 (transform.localPosition.x + onCircle.x * shakeIntensity, transform.localPosition.y + onCircle.y * shakeIntensity, transform.localPosition.z);
+			shakeTarget = new Vector3 (transform.localPosition.x + onCircle.x * shakeIntensity * shakeTime/shakeMaxTime, transform.localPosition.y + onCircle.y * shakeIntensity * shakeTime/shakeMaxTime, transform.localPosition.z);
+
+			transform.localPosition = Vector3.Lerp (transform.localPosition, shakeTarget, shakeEasing);
 			shakeTime -= Time.deltaTime * decreaseFactor;
 		
 		} else {
 			shakeTime = 0.0f;
+			shakeTarget = transform.position;
+			transform.localPosition = Vector3.Lerp (transform.localPosition, shakeTarget, shakeEasing);
 		}
 
 	}
 
-	public void ShakeScreen(float time){
+	public void ShakeScreen(float time, float magnitude){
+		if (shakeIntensity < magnitude) {
+			shakeIntensity = magnitude;
+		} else {
+			if (shakeTime <= 0){
+				shakeIntensity = magnitude;
+			}
+		}
 		shakeTime = time;
+		shakeMaxTime = time;
 	}
 }

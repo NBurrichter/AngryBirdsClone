@@ -15,6 +15,14 @@ public class BlockPhysics : MonoBehaviour {
 	private GameObject spark;
 	private GameObject hitExplosion;
 
+	//Screenshake magnitude and time
+	//on planet hit
+	public float shakeMagnitudePlanet = 10.0f;
+	public float shakeTimePlanet = 0.75f;
+	//on ship/projectile hit
+	public float shakeMagnitude = 5.0f;
+	public float shakeTime = 0.25f;
+
 	//souds
 	//public AudioClip hitSound;
 	//private AudioSource source;
@@ -45,7 +53,7 @@ public class BlockPhysics : MonoBehaviour {
 			ExplosionManager.S.PlaySoundExplosion ();
 
 			//Screenshake
-			FollowCam.S.ShakeScreen(0.1f);
+			FollowCam.S.ShakeScreen(shakeTimePlanet,shakeMagnitudePlanet);
 
 			//destroy self in a big explosion
 			Instantiate (explosion, transform.position, transform.rotation);
@@ -63,7 +71,7 @@ public class BlockPhysics : MonoBehaviour {
 			canBeAttracted  = true;
 
 			//Screenshake
-			FollowCam.S.ShakeScreen(0.01f);
+			FollowCam.S.ShakeScreen(shakeTime,shakeMagnitude);
 		}
 
 

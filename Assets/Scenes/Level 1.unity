@@ -5125,9 +5125,12 @@ MonoBehaviour:
   easing: .0500000007
   minXY: {x: 0, y: 0}
   onCircle: {x: 0, y: 0}
+  shakeTarget: {x: 0, y: 0, z: 0}
+  targetDistance: .100000001
   shakeIntensity: 2
   shakeTime: 0
   decreaseFactor: 1
+  shakeEasing: .100000001
 --- !u!114 &1907364899
 MonoBehaviour:
   m_ObjectHideFlags: 0

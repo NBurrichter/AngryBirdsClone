@@ -138,6 +138,10 @@ MonoBehaviour:
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
   sparkPrefab: {fileID: 153806, guid: 09a96166a1de3ab41bfd054825fc24aa, type: 2}
   hitExplosionPrefab: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
+  shakeMagnitudePlanet: 10
+  shakeTimePlanet: .5
+  shakeMagnitude: 5
+  shakeTime: .25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -153,6 +157,10 @@ Prefab:
       propertyPath: hitExplosionPrefab
       value: 
       objectReference: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shakeTimePlanet
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126078}
