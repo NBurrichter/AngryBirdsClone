@@ -3,22 +3,24 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
-public enum GameState {
-	idle,
-	playing,
-	levelEnd
-}
+//public enum GameState {
+//	idle,
+//	playing,
+//	levelEnd
+//}
 
 public class GameController : MonoBehaviour {
 
 	public static GameController S;
 	
 	//Public Inspector fields
-	public GameObject[] levels;
-	public Vector3 levelPos;
+	//public GameObject[] levels;
+	//public Vector3 levelPos;
 
 	public Text gtLevel;
 	public Text gtShots;
+	public Text gtToDestroy;
+	public Text gtDestroyed;
 
 	//dynamic fields
 	public int level;
@@ -26,17 +28,24 @@ public class GameController : MonoBehaviour {
 
 	public int shotsTaken;
 
-	public GameObject planetLevel; // the currnt Level Layout
+	//public GameObject planetLevel; // the currnt Level Layout
 	
 	public string showing = "Cannon"; //cam mode
 
-	public GameState state = GameState.idle;
+	//public GameState state = GameState.idle;
+
+	//counter for destroyed ships
+	private int goalCouter;
+	public int goalToWin;
+
+	public string thisLevel;
+	public string nextLevel;
 
 	void Awake(){
 		S = this;
 
 		//level = 0;
-		levelMax = levels.Length;
+		//levelMax = levels.Length;
 
 		//StartLevel ();
 	}
@@ -53,10 +62,10 @@ public class GameController : MonoBehaviour {
 		//}
 
 		//destroy all remaininng projectiles
-		GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
-		foreach(GameObject p in projectiles){
-			Destroy(p);
-		}
+		//GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+		//foreach(GameObject p in projectiles){
+		//	Destroy(p);
+		//}
 
 		//Insttiate a new planet
 		//planetLevel = Instantiate (levels[level]) as GameObject;
@@ -71,7 +80,7 @@ public class GameController : MonoBehaviour {
 		//Goal.goalMet = false;
 		UpdateGT();
 		
-		state = GameState.playing;
+		//state = GameState.playing;
 
 		//clear all the projectile Trails
 
@@ -80,6 +89,8 @@ public class GameController : MonoBehaviour {
 	void UpdateGT() {
 		gtLevel.text = "Level:" + (level+1) + " of " + levelMax;
 		gtShots.text = "Shots Taken: " + shotsTaken;
+		gtToDestroy.text = "Destroy " + goalToWin + " ships";
+		gtDestroyed.text = goalToWin -goalCouter + " more to go";
 	}
 
 	void Update() {
@@ -87,17 +98,17 @@ public class GameController : MonoBehaviour {
 		UpdateGT();
 
 		//check for level end
-		if(state == GameState.playing && Goal.goalMet) {
-			if(FollowCam.S.poi.tag == "Projectile" &&  FollowCam.S.poi.GetComponent<Rigidbody>().IsSleeping()) {
-				// Change state to stop checking for level end
-				state = GameState.levelEnd;
-				// Zoom out
-				SwitchView("Both");
-				// Start next level in 2 seconds
-				//Invoke("NextLevel", 2f);
-				//Application.LoadLevel(nextLevel);
-			}
-		}
+		//if(state == GameState.playing && Goal.goalMet) {
+		//	if(FollowCam.S.poi.tag == "Projectile" &&  FollowCam.S.poi.GetComponent<Rigidbody>().IsSleeping()) {
+		//		// Change state to stop checking for level end
+		//		state = GameState.levelEnd;
+		//		// Zoom out
+		//		SwitchView("Both");
+		//		// Start next level in 2 seconds
+		//		//Invoke("NextLevel", 2f);
+		//		//Application.LoadLevel(nextLevel);
+		//	}
+		//}
 	}
 
 	//void NextLevel() {
@@ -136,6 +147,20 @@ public class GameController : MonoBehaviour {
 
 	public static void ShotFired(){
 		S.shotsTaken++;
+	}
+
+	public void RestartLevel(){
+		Application.LoadLevel (thisLevel);
+	}
+
+	public void IncGoal(int value){
+		goalCouter += value;
+		Debug.Log (goalCouter);
+
+		//Check if goal is meet
+		if (goalCouter >= goalToWin) {
+			Application.LoadLevel(nextLevel);
+		}
 	}
 }
 /*

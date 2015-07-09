@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Goal : MonoBehaviour {
 
+	//physics
+	public GameObject attractedTo;
+	public float strengthOfAttraction = 5.0f;
+	public float distanceOfAttraction = 10.0f;
+	public bool canBeAttracted;
+
+	//next level variables
 	public static bool goalMet;
 	public GameObject explosion;
 	public string nextLevel;
@@ -15,6 +22,10 @@ public class Goal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		//check if the object is a projectile
+		if (other.transform.tag == "Planet") {
+			GetComponent<Rigidbody> ().Sleep ();
+		}
+		
 		if (other.tag == "Projectile") {
 
 			//If so set goalMet to true
@@ -33,6 +44,14 @@ public class Goal : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		Vector3 direction = (attractedTo.transform.position - transform.position);
+		if (direction.magnitude < distanceOfAttraction && canBeAttracted ) {
+			Vector3 normalDirection = direction.normalized;
+			GetComponent<Rigidbody> ().AddForce (strengthOfAttraction * normalDirection);
+		}
+	}
+
 	void FixedUpdate(){
 	if (goalMet == true) {
 			timer -= 1;
@@ -40,5 +59,14 @@ public class Goal : MonoBehaviour {
 				Application.LoadLevel (nextLevel);
 			}
 		}
+	}
+
+	void OnCollisionEnter(Collision other) 
+	{		
+		if (other.transform.tag == "Projectile" || other.transform.tag == "Enemy") {			
+			canBeAttracted  = true;
+		}
+		
+		
 	}
 }
