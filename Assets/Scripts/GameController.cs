@@ -21,6 +21,9 @@ public class GameController : MonoBehaviour {
 	public Text gtShots;
 	public Text gtToDestroy;
 	public Text gtDestroyed;
+	public Text gtWon;
+	public Text gtFinalShots;
+	private float textEasing = 0.05f;
 
 	//dynamic fields
 	public int level;
@@ -37,6 +40,7 @@ public class GameController : MonoBehaviour {
 	//counter for destroyed ships
 	private int goalCouter;
 	public int goalToWin;
+	private bool won = false;
 
 	public string thisLevel;
 	public string nextLevel;
@@ -79,6 +83,8 @@ public class GameController : MonoBehaviour {
 		//switch the view to "both"
 		//Goal.goalMet = false;
 		UpdateGT();
+
+		won = false;
 		
 		//state = GameState.playing;
 
@@ -96,6 +102,11 @@ public class GameController : MonoBehaviour {
 	void Update() {
 		//update our gui texts
 		UpdateGT();
+
+		//move "you won"
+		if (won) {
+			gtWon.rectTransform.anchoredPosition3D = Vector3.Lerp(gtWon.rectTransform.anchoredPosition3D,Vector3.zero,textEasing);
+		}
 
 		//check for level end
 		//if(state == GameState.playing && Goal.goalMet) {
@@ -158,9 +169,14 @@ public class GameController : MonoBehaviour {
 		Debug.Log (goalCouter);
 
 		//Check if goal is meet
-		if (goalCouter >= goalToWin) {
-			Application.LoadLevel(nextLevel);
+		if (goalCouter >= goalToWin && !won) {
+			won = true;
+			gtFinalShots.text = shotsTaken + " shots made";
 		}
+	}
+
+	public void NextLevel(){
+		Application.LoadLevel(nextLevel);
 	}
 }
 /*
