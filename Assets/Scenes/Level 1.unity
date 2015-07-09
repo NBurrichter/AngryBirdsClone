@@ -5124,6 +5124,10 @@ MonoBehaviour:
   poi: {fileID: 0}
   easing: .0500000007
   minXY: {x: 0, y: 0}
+  onCircle: {x: 0, y: 0}
+  shakeIntensity: 2
+  shakeTime: 0
+  decreaseFactor: 1
 --- !u!114 &1907364899
 MonoBehaviour:
   m_ObjectHideFlags: 0

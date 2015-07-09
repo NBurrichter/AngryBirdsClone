@@ -13,6 +13,12 @@ public class FollowCam : MonoBehaviour {
 
 	public Vector2 minXY;
 
+	//screenshake
+	public Vector2 onCircle;
+	public float shakeIntensity = 2.0f;
+	public float shakeTime = 0.0f;
+	public float decreaseFactor = 1.0f;
+
 	void Awake() {
 		S = this;
 		camZ = transform.position.z;
@@ -56,5 +62,21 @@ public class FollowCam : MonoBehaviour {
 		transform.position = destination;
 
 		this.GetComponent<Camera> ().orthographicSize = 10 + destination.y;
+
+		//Screenshake
+		if (shakeTime > 0) {
+			
+			onCircle = Random.insideUnitCircle;
+			transform.localPosition = new Vector3 (transform.localPosition.x + onCircle.x * shakeIntensity, transform.localPosition.y + onCircle.y * shakeIntensity, transform.localPosition.z);
+			shakeTime -= Time.deltaTime * decreaseFactor;
+		
+		} else {
+			shakeTime = 0.0f;
+		}
+
+	}
+
+	public void ShakeScreen(float time){
+		shakeTime = time;
 	}
 }

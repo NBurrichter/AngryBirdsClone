@@ -41,8 +41,12 @@ public class BlockPhysics : MonoBehaviour {
 	void OnCollisionEnter(Collision other) 
 	{
 		if (other.transform.tag == "Planet") {
+			//create explosion
 			ExplosionManager.S.PlaySoundExplosion ();
-			
+
+			//Screenshake
+			FollowCam.S.ShakeScreen(0.1f);
+
 			//destroy self in a big explosion
 			Instantiate (explosion, transform.position, transform.rotation);
 			Destroy (gameObject);
@@ -57,6 +61,9 @@ public class BlockPhysics : MonoBehaviour {
 			hitExplosion.transform.position = transform.position;
 
 			canBeAttracted  = true;
+
+			//Screenshake
+			FollowCam.S.ShakeScreen(0.01f);
 		}
 
 
