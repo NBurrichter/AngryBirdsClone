@@ -201,6 +201,9 @@ public class Slingshot : MonoBehaviour {
 			//play explosion on fire
 			firePartSystem.Clear();
 			firePartSystem.Play(true);
+
+			//Shake screen
+			FollowCam.S.ShakeScreen(0.25f,20.0f);
 		}
 	}
 	
