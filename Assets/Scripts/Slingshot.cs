@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Slingshot : MonoBehaviour {
@@ -36,6 +36,10 @@ public class Slingshot : MonoBehaviour {
 	private float lowPitchRange = .75F;
 	private float highPitchRange = 1.5F;
 
+	//Particles
+	public GameObject fireParticle;
+	private ParticleSystem firePartSystem;
+
 	void Awake() {
 		Transform launchPointTrans = transform.Find("Launchpoint");
 		launchPoint = launchPointTrans.gameObject;
@@ -48,6 +52,11 @@ public class Slingshot : MonoBehaviour {
 
 		//Find audio source
 		source = GetComponent<AudioSource>();
+
+		//Stop fire particle
+		firePartSystem = fireParticle.GetComponent<ParticleSystem> ();
+		firePartSystem.Stop();
+
 	}
 
     void OnMouseEnter() {
@@ -185,9 +194,13 @@ public class Slingshot : MonoBehaviour {
 			source.pitch = Random.Range (lowPitchRange,highPitchRange);
 			source.PlayOneShot(shootSound,vol);
 
-			//reload sound
+			//reload sound timer start
 			reload = true;
 			reloadSoundTimer = reloadSpeed;
+
+			//play explosion on fire
+			firePartSystem.Clear();
+			firePartSystem.Play(true);
 		}
 	}
 	
