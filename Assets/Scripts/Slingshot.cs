@@ -15,6 +15,9 @@ public class Slingshot : MonoBehaviour {
 	private GameObject projectile;
 	private Vector3 launchPos;
 
+	//Saving mouse location
+	private bool ifMouseOver;
+
 	//Blendshape controllers
 	SkinnedMeshRenderer skinnedMeshRenderer;
 	//Mesh skinnedMesh;
@@ -22,6 +25,8 @@ public class Slingshot : MonoBehaviour {
 	//Sounds
 	public AudioClip shootSound;
 	public AudioClip reloadSound;
+	public AudioClip enterSound;
+	public AudioClip leaveSound;
 	public float reloadSpeed = 1.0f;
 	private float reloadSoundTimer = 0.0f;
 	private bool reload = false;
@@ -46,18 +51,42 @@ public class Slingshot : MonoBehaviour {
 	}
 
     void OnMouseEnter() {
+		ifMouseOver = true;
+
 		//print ("Slingshot:MouseEnter");
-		launchPoint.SetActive (true);	
+		if (!reload) {
+			launchPoint.SetActive (true);
+
+			//sound on entering radius with mouse
+			if (!aimingMode){
+				float vol = 0.1f;
+				source.pitch = Random.Range (lowPitchRange,highPitchRange);
+				source.PlayOneShot(enterSound,vol);
+			}
+		}
 	}
 
 	void OnMouseExit(){
+		ifMouseOver = false;
+
 		//print ("Slingshot:MouseExit");
-		launchPoint.SetActive (false);
+		if (!aimingMode) {
+			launchPoint.SetActive (false);
+		}
+
+		//Sound on leaving radius with mouse
+		if (!aimingMode) {
+			float vol = 0.1f;
+			source.pitch = Random.Range (lowPitchRange, highPitchRange);
+			source.PlayOneShot (leaveSound, vol);
+		}
 	}
 
 	void OnMouseDown() {
 		//set the game to aiming mod
-		aimingMode = true;
+		if (!reload) {
+			aimingMode = true;
+		}
 
 		//instantiate a projectile at launchpoint
 		//projectile = Instantiate (prefabProjectile) as GameObject;
@@ -71,7 +100,7 @@ public class Slingshot : MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		launchPoint.SetActive (true);	
+		//launchPoint.SetActive (true);	
 	}
 
 	void Update() {
@@ -84,6 +113,10 @@ public class Slingshot : MonoBehaviour {
 				source.pitch = Random.Range (lowPitchRange,highPitchRange);
 				source.PlayOneShot(reloadSound,vol);
 				reload = false;
+
+				if (ifMouseOver){
+					launchPoint.SetActive (true);
+				}
 			}
 
 		}
@@ -91,7 +124,7 @@ public class Slingshot : MonoBehaviour {
 		if (!aimingMode)
 			return;
 
-		launchPoint.SetActive (true);	
+		//launchPoint.SetActive (true);	
 		//get mouse pos and convert it to 3D
 		Vector3 mousePos2D = Input.mousePosition;
 		mousePos2D.z = - Camera.main.transform.position.z;
