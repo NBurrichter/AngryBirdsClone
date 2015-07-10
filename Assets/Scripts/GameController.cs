@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -12,16 +12,14 @@ using UnityEngine.Audio;
 public class GameController : MonoBehaviour {
 
 	public static GameController S;
-	
-	//Public Inspector fields
-	//public GameObject[] levels;
-	//public Vector3 levelPos;
+
 
 	public Text gtLevel;
 	public Text gtShots;
 	public Text gtToDestroy;
 	public Text gtDestroyed;
 	public Text gtWon;
+	public Text gtLost;
 	public Text gtFinalShots;
 	private float textEasing = 0.05f;
 
@@ -29,29 +27,22 @@ public class GameController : MonoBehaviour {
 	public int level;
 	public int levelMax;
 
-	public int shotsTaken;
-
-	//public GameObject planetLevel; // the currnt Level Layout
+	private int shotsTaken;
+	public int maxShots;
 	
 	public string showing = "Cannon"; //cam mode
-
-	//public GameState state = GameState.idle;
 
 	//counter for destroyed ships
 	private int goalCouter;
 	public int goalToWin;
 	private bool won = false;
+	public bool lost = false;
 
 	public string thisLevel;
 	public string nextLevel;
 
 	void Awake(){
 		S = this;
-
-		//level = 0;
-		//levelMax = levels.Length;
-
-		//StartLevel ();
 	}
 
 	private void Start()
@@ -60,20 +51,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	void StartLevel(){
-		//if there is a planet, destroy it
-		//if(planetLevel != null) {
-		//	Destroy (planetLevel);
-		//}
-
-		//destroy all remaininng projectiles
-		//GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
-		//foreach(GameObject p in projectiles){
-		//	Destroy(p);
-		//}
-
-		//Insttiate a new planet
-		//planetLevel = Instantiate (levels[level]) as GameObject;
-		//planetLevel.transform.position = levelPos;
 		shotsTaken = 0;
 
 		//reset the camera
@@ -85,16 +62,12 @@ public class GameController : MonoBehaviour {
 		UpdateGT();
 
 		won = false;
-		
-		//state = GameState.playing;
-
-		//clear all the projectile Trails
 
 	}
 
 	void UpdateGT() {
 		gtLevel.text = "Level:" + (level+1) + " of " + levelMax;
-		gtShots.text = "Shots Taken: " + shotsTaken;
+		gtShots.text = maxShots - shotsTaken + " Shots left";
 		gtToDestroy.text = "Destroy " + goalToWin + " ships";
 		gtDestroyed.text = goalToWin -goalCouter + " more to go";
 	}
@@ -108,27 +81,10 @@ public class GameController : MonoBehaviour {
 			gtWon.rectTransform.anchoredPosition3D = Vector3.Lerp(gtWon.rectTransform.anchoredPosition3D,Vector3.zero,textEasing);
 		}
 
-		//check for level end
-		//if(state == GameState.playing && Goal.goalMet) {
-		//	if(FollowCam.S.poi.tag == "Projectile" &&  FollowCam.S.poi.GetComponent<Rigidbody>().IsSleeping()) {
-		//		// Change state to stop checking for level end
-		//		state = GameState.levelEnd;
-		//		// Zoom out
-		//		SwitchView("Both");
-		//		// Start next level in 2 seconds
-		//		//Invoke("NextLevel", 2f);
-		//		//Application.LoadLevel(nextLevel);
-		//	}
-		//}
+		if (lost) {
+			gtLost.rectTransform.anchoredPosition3D = Vector3.Lerp(gtLost.rectTransform.anchoredPosition3D,Vector3.zero,textEasing);
+		}
 	}
-
-	//void NextLevel() {
-	//	level++;
-	//	if(level == levelMax){
-	//		level = 0;
-	//	}
-	//	StartLevel();
-	//}
 
 	public void SwitchView(string view){
 		//Switch over all the posibilities "cannon", "both","planet"
@@ -158,6 +114,9 @@ public class GameController : MonoBehaviour {
 
 	public static void ShotFired(){
 		S.shotsTaken++;
+		if (S.shotsTaken >= S.maxShots) {
+			S.lost = true;
+		}
 	}
 
 	public void RestartLevel(){
@@ -179,111 +138,3 @@ public class GameController : MonoBehaviour {
 		Application.LoadLevel(nextLevel);
 	}
 }
-/*
- * public class GameController : MonoBehaviour {
-
-	public static GameController S; // Singleton
-
-	// Fields set in Unity Inspector pane
-	public GameObject[] castles; // An array with all castles
-	public Text gtLevel; // Level GUI Text
-	public Text gtScore; // Score GUI Text
-	public Vector3 castlePos; // Place to put castles
-
-	// Dynamic fields
-	public int level; // Current level
-	public int levelMax; // Number of levels
-	public int shotsTaken;
-	public GameObject castle; // The current castle
-	public GameState state = GameState.idle;
-	public string showing = "Slingshot"; // FollowCam mode
-	
-	void Start(){
-		S = this;
-		level = 0;
-		levelMax = castles.Length;
-		StartLevel();
-	}
-
-	void StartLevel() {
-		// If a castle exists, get rid of it
-		if(castle != null) {
-			Destroy (castle);
-		}
-
-		// Destroy the old projectiles
-		GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
-		foreach(GameObject p in projectiles){
-			Destroy(p);
-		}
-
-		// Instantiate the new castle
-		castle = Instantiate (castles[level]) as GameObject;
-		castle.transform.position = castlePos;
-		shotsTaken = 0;
-
-		// Reset the camera
-		SwitchView("Both");
-		ProjectileLine.S.Clear();
-
-		// Reset the Goal
-		Goal.goalMet = false;
-		UpdateGT();
-
-		state = GameState.playing;
-	
-	}
-
-	void UpdateGT() {
-		gtLevel.text = "Level:" + (level+1) + " of " + levelMax;
-		gtScore.text = "Shots Taken: " + shotsTaken;
-	}
-
-	void Update() {
-		UpdateGT();
-
-		// Check for level end
-		if(state == GameState.playing && Goal.goalMet) {
-			if(FollowCam.S.poi.tag == "Projectile" &&  FollowCam.S.poi.GetComponent<Rigidbody>().IsSleeping()) {
-				// Change state to stop checking for level end
-				state = GameState.levelEnd;
-				// Zoom out
-				SwitchView("Both");
-				// Start next level in 2 seconds
-				Invoke("NextLevel", 2f);
-			}
-		}
-	}
-
-	void NextLevel() {
-		level++;
-		if(level == levelMax){
-			level = 0;
-		}
-		StartLevel();
-	}
-
-	// Static to change the view point
-	public void SwitchView(string view) {
-		S.showing = view;
-		switch(S.showing){
-		case "Slingshot":
-			FollowCam.S.poi = null;
-			break;
-		case "Castle":
-			FollowCam.S.poi = S.castle;
-			break;
-		case "Both":
-			FollowCam.S.poi = GameObject.Find ("ViewBoth");
-			break;
-		}
-	}
-
-	// Static function that allows to increment the score
-	public static void ShotFired(){
-		S.shotsTaken++;
-	}
-
-
-}
-*/

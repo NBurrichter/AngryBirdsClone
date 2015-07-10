@@ -93,7 +93,7 @@ public class Slingshot : MonoBehaviour {
 
 	void OnMouseDown() {
 		//set the game to aiming mod
-		if (!reload) {
+		if (!reload && !GameController.S.lost) {
 			aimingMode = true;
 		}
 
@@ -203,7 +203,7 @@ public class Slingshot : MonoBehaviour {
 			firePartSystem.Play(true);
 
 			//Shake screen
-			FollowCam.S.ShakeScreen(0.25f,20.0f);
+			FollowCam.S.ShakeScreen(0.25f,10.0f);
 		}
 	}
 	

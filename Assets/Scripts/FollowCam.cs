@@ -22,6 +22,7 @@ public class FollowCam : MonoBehaviour {
 	private float shakeMaxTime = 0.0f;
 	public float decreaseFactor = 1.0f;
 	public float shakeEasing = 0.1f;
+	public float shakeTargetDistance = 0.1f;
 
 	void Awake() {
 		S = this;
@@ -71,7 +72,7 @@ public class FollowCam : MonoBehaviour {
 		if (shakeTime > 0) {
 
 			onCircle = Random.insideUnitCircle;
-			shakeTarget = new Vector3 (transform.localPosition.x + onCircle.x * shakeIntensity * shakeTime/shakeMaxTime, transform.localPosition.y + onCircle.y * shakeIntensity * shakeTime/shakeMaxTime, transform.localPosition.z);
+			shakeTarget = new Vector3 (transform.localPosition.x + onCircle.x * shakeIntensity  * shakeTime/shakeMaxTime, transform.localPosition.y + onCircle.y * shakeIntensity * shakeTime/shakeMaxTime, transform.localPosition.z);
 
 			transform.localPosition = Vector3.Lerp (transform.localPosition, shakeTarget, shakeEasing);
 			shakeTime -= Time.deltaTime * decreaseFactor;
