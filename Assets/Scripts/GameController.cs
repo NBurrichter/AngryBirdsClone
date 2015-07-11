@@ -41,6 +41,11 @@ public class GameController : MonoBehaviour {
 	public string thisLevel;
 	public string nextLevel;
 
+	//Testing variables
+	public float x;
+	public float y;
+	public float z;
+
 	void Awake(){
 		S = this;
 	}
@@ -82,7 +87,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (lost) {
-			gtLost.rectTransform.anchoredPosition3D = Vector3.Lerp(gtLost.rectTransform.anchoredPosition3D,Vector3.zero,textEasing);
+			gtLost.rectTransform.anchoredPosition3D = Vector3.Lerp(gtLost.rectTransform.anchoredPosition3D,new Vector3(225,-160,0),textEasing);
 		}
 	}
 
