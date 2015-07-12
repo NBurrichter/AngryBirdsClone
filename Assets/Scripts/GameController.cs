@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour {
 	//counter for destroyed ships
 	private int goalCouter;
 	public int goalToWin;
-	private bool won = false;
+	public bool won = false;
 	public bool lost = false;
 
 	public string thisLevel;
