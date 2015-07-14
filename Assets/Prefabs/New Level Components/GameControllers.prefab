@@ -364,9 +364,11 @@ MonoBehaviour:
   maxShots: 5
   showing: Cannon
   goalToWin: 3
+  won: 0
   lost: 0
   thisLevel: Level 1
   nextLevel: Level 2
+  buttonPress: {fileID: 0}
   x: 0
   y: 0
   z: 0

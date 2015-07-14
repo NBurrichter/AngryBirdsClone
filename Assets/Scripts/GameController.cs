@@ -41,6 +41,14 @@ public class GameController : MonoBehaviour {
 	public string thisLevel;
 	public string nextLevel;
 
+	//Sounds
+	public AudioClip buttonPress;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+	private float lowPitchRange = .75F;
+	private float highPitchRange = 1.5F;
+
 	//Testing variables
 	public float x;
 	public float y;
@@ -48,6 +56,8 @@ public class GameController : MonoBehaviour {
 
 	void Awake(){
 		S = this;
+		//Find audio source
+		source = GetComponent<AudioSource>();
 	}
 
 	private void Start()
@@ -108,6 +118,11 @@ public class GameController : MonoBehaviour {
 			}
 	}
 
+	public void PlayButtonSound(){
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.pitch = Random.Range (lowPitchRange,highPitchRange);
+		source.PlayOneShot(buttonPress,vol);
+	}
 	//Mute Function
 	//public void Mute(){
 	//	if (GetComponent<AudioSource> ().mute == false) {
