@@ -43,7 +43,7 @@ public class ProjectilePhysics : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		if (col.transform.tag == "Planet") {
-			GetComponent<Rigidbody>().Sleep();
+			//GetComponent<Rigidbody>().Sleep();
 			collided = true;
 
 			//Play spund when crashing into planet

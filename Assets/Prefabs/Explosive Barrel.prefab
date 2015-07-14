@@ -15,6 +15,7 @@ GameObject:
   - 54: {fileID: 5409330}
   - 136: {fileID: 13631258}
   - 114: {fileID: 11488534}
+  - 114: {fileID: 11433304}
   m_Layer: 0
   m_Name: Explosive Barrel
   m_TagString: Enemy
@@ -109,6 +110,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11433304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f8dff76b8c5694ca5041fcd4f171d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 0}
+  shakeMagnitudePlanet: 10
+  shakeTimePlanet: .75
 --- !u!114 &11488534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +141,10 @@ MonoBehaviour:
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
   sparkPrefab: {fileID: 153806, guid: 09a96166a1de3ab41bfd054825fc24aa, type: 2}
   hitExplosionPrefab: {fileID: 157102, guid: aa58c77666feae74489e27ea0c72759f, type: 2}
+  shakeMagnitudePlanet: 10
+  shakeTimePlanet: .75
+  shakeMagnitude: 5
+  shakeTime: .25
 --- !u!136 &13631258
 CapsuleCollider:
   m_ObjectHideFlags: 1
