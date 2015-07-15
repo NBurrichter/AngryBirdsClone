@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f8dff76b8c5694ca5041fcd4f171d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
+  explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
   shakeMagnitudePlanet: 10
   shakeTimePlanet: .75
 --- !u!114 &11488534

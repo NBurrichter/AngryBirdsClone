@@ -267,9 +267,9 @@ Prefab:
       objectReference: {fileID: 1882730531}
     - target: {fileID: 11425696, guid: 4a7d9c88334d74e4ab1f26bc181c7d07, type: 2}
       propertyPath: m_Text
-      value: 'The Mothership counts as 3,
+      value: 'Out of ammo? You can restart
 
-        the transporter as 2 Spaceships.'
+        a level at the bottom right.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a7d9c88334d74e4ab1f26bc181c7d07, type: 2}
@@ -365,7 +365,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 493078, guid: 4f41939b62cf4d747986383027938d98, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f41939b62cf4d747986383027938d98, type: 2}
@@ -1597,7 +1597,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458406, guid: 03379f2bd07e47843b335c54ed964525, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6560862, guid: 03379f2bd07e47843b335c54ed964525, type: 2}
       propertyPath: m_Enabled
@@ -2033,7 +2033,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455422, guid: d5d4122b151667c41bcb8053e2b79ffe, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5d4122b151667c41bcb8053e2b79ffe, type: 2}
@@ -2159,7 +2159,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458030, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 126078, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_Name
@@ -2217,7 +2217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458030, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 126078, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_Name
@@ -2263,7 +2263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458030, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
@@ -2363,7 +2363,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458030, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 126078, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_Name
@@ -2409,7 +2409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455422, guid: d5d4122b151667c41bcb8053e2b79ffe, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 158054, guid: d5d4122b151667c41bcb8053e2b79ffe, type: 2}
       propertyPath: m_Name
@@ -2501,15 +2501,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
       propertyPath: nextLevel
-      value: Level 4
+      value: Level 5
       objectReference: {fileID: 0}
     - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
       propertyPath: thisLevel
-      value: Level 3
+      value: Level 4
       objectReference: {fileID: 0}
     - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
       propertyPath: maxShots
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
       propertyPath: level
@@ -2518,6 +2518,10 @@ Prefab:
     - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
       propertyPath: goalToWin
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494464, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
+      propertyPath: levelMax
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b18e7894a21f00418a723c77307061f, type: 2}
@@ -3695,7 +3699,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 61ed64627d6983049b044a8535349409, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 61ed64627d6983049b044a8535349409, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3867,7 +3871,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458030, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 126078, guid: b2a7b7ba829b56e48ac7bac1181c11c7, type: 2}
       propertyPath: m_Name

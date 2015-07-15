@@ -31,8 +31,8 @@ public class Slingshot : MonoBehaviour {
 	private float reloadSoundTimer = 0.0f;
 	private bool reload = false;
 	private AudioSource source;
-	private float volLowRange = .5f;
-	private float volHighRange = 1.0f;
+	private float volLowRange = 0.5f;
+	private float volHighRange = 0.7f;
 	private float lowPitchRange = .75F;
 	private float highPitchRange = 1.5F;
 
@@ -68,7 +68,7 @@ public class Slingshot : MonoBehaviour {
 
 			//sound on entering radius with mouse
 			if (!aimingMode){
-				float vol = 0.1f;
+				float vol = Random.Range (volLowRange, volHighRange);
 				source.pitch = Random.Range (lowPitchRange,highPitchRange);
 				source.PlayOneShot(enterSound,vol);
 			}
@@ -85,7 +85,7 @@ public class Slingshot : MonoBehaviour {
 
 		//Sound on leaving radius with mouse
 		if (!aimingMode) {
-			float vol = 0.1f;
+			float vol = Random.Range (volLowRange, volHighRange);
 			source.pitch = Random.Range (lowPitchRange, highPitchRange);
 			source.PlayOneShot (leaveSound, vol);
 		}

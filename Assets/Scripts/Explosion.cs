@@ -27,7 +27,7 @@ public class Explosion : MonoBehaviour {
 			FollowCam.S.ShakeScreen(shakeTimePlanet,shakeMagnitudePlanet);
 			
 			//destroy self in a big explosion
-			//Instantiate (explosion, transform.position, transform.rotation);
+			Instantiate (explosion, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 		
