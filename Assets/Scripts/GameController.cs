@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 
 	//dynamic fields
 	public int level;
-	public static int levelMax = 5;
+	public static int levelMax = 7;
 
 	private int shotsTaken;
 	public int maxShots;
