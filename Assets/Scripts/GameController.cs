@@ -58,6 +58,10 @@ public class GameController : MonoBehaviour {
 		S = this;
 		//Find audio source
 		source = GetComponent<AudioSource>();
+
+		Screen.autorotateToPortrait = false;
+		Screen.autorotateToPortraitUpsideDown = false;
+
 	}
 
 	private void Start()

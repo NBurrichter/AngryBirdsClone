@@ -1,3 +1,8 @@
+Read this file in a texteditor, GitHub screws up Ascii Art :(
+
+I created an Android .apk of the game today, this screwed some things up. Not sure what was all effected. The commit made on the 16 Juli should be used, if major errors occur.
+The recommended Resolution is 16:9. Now to the game:
+
   _________                              _____       .___                    __                        
  /   _____/__________    ____  ____     /  _  \    __| _/__  __ ____   _____/  |_ __ _________   ____  
  \_____  \\____ \__  \ _/ ___\/ __ \   /  /_\  \  / __ |\  \/ // __ \ /    \   __\  |  \_  __ \_/ __ \ 
